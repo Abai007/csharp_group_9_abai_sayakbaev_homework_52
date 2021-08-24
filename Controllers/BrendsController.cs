@@ -25,6 +25,14 @@ namespace homework_52.Controllers
             return View();
         }
         [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var brand = _db.Brends.FirstOrDefault(t => t.Id == id);
+            _db.Brends.Remove(brand);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
         public IActionResult Create(Brend brend)
         {
             List<Brend> brends = _db.Brends.ToList();

@@ -18,12 +18,18 @@
                 <th>Id</th>
                 <th>Название</th>
             </tr>
-            @foreach (var phone in @Model)
+            @foreach (var category in @Model)
             {
-                <tr>
-                    <td>@phone.Id</td>
-                    <td>@phone.Name</td>
-                </tr>
+        <tr>
+            <td>@category.Id</td>
+            <td>@category.Name</td>
+            <td>
+                @using (Html.BeginForm("Delete", "Categories", new { id = @category.Id }))
+                {
+                    <button type="submit">Delete</button>
+                }
+            </td>
+        </tr>
             }
         </table>
     }

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using homework_52.Models;
 
 namespace homework_52.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    partial class StoreContextModelSnapshot : ModelSnapshot
+    [Migration("20210823101134_CreateNewPropertiesToEntityProduct")]
+    partial class CreateNewPropertiesToEntityProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,31 +46,6 @@ namespace homework_52.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("homework_52.Models.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ContactPhone")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Orders");
-                });
-
             modelBuilder.Entity("homework_52.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -78,8 +55,14 @@ namespace homework_52.Migrations
                     b.Property<int>("BrendId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("BrendName")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("TEXT");
@@ -103,17 +86,6 @@ namespace homework_52.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("homework_52.Models.Order", b =>
-                {
-                    b.HasOne("homework_52.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("homework_52.Models.Product", b =>

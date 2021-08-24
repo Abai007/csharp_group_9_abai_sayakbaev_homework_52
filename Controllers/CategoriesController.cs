@@ -25,6 +25,15 @@ namespace homework_52.Controllers
             return View();
         }
         [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var task = _db.Categories.FirstOrDefault(t => t.Id == id);
+            _db.Categories.Remove(task);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
         public IActionResult Create(Category category)
         {
             List<Category> categories = _db.Categories.ToList();
