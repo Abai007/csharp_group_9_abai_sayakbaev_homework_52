@@ -10,6 +10,7 @@ namespace homework_52.Migrations
                 name: "Brends",
                 columns: table => new
                 {
+
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: true)
